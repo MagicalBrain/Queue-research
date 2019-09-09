@@ -57,7 +57,19 @@ bool DeQueue_2S(SqStack* q1, SqStack* q2, ElemType &x)
 }
 
 //使用两个栈来模拟清空队列操作
-bool ClearQueue_2S()
+bool ClearQueue_2S(SqStack *q1,SqStack *q2)
 {
-	return false;
+	if (q1->top == 0)
+	{
+		return false;
+	}
+	else
+		q1->top = 0;
+	if (q2->top == 0)
+	{
+		return false;
+	}
+	else
+		q2->top = 0;
+	return true;
 }

@@ -84,18 +84,27 @@ void Testfunc03()
 {
 	int a[5] = { 1,2,3,4,5 };
 
-	SqStack* s = (SqStack*)malloc(sizeof(SqStack));
+	SqStack* s1 = (SqStack*)malloc(sizeof(SqStack));
+	SqStack* s2 = (SqStack*)malloc(sizeof(SqStack));
 	//Queue* q = (Queue*)malloc(sizeof(Queue));
 
-	InitStack_Sq(*s, 5, 0);
+	InitStack_Sq(*s1, 5, 0);
+	InitStack_Sq(*s2, 5, 0);
 	//InitQueue(*q, 10);
 
 	for (int i = 0; i < 5; i++)
 	{
-		push(*s, a[i]);
+		//push(*s, a[i]);
+		EnQueue_2S(s1, s2, a[i]);
 	}
 
-	if (isFull(*s))
+	for (int i = 0; i < 5; i++)
+	{
+		//push(*s, a[i]);
+		DeQueue_2S(s1, s2, a[i]);
+	}
+
+	if (isFull(*s2))
 		cout << "Õ»Âú£¡" << endl;
 	else
 		cout << "Õ»Î´Âú£¡" << endl;
