@@ -41,35 +41,62 @@ bool EnQueue_2S(SqStack *q1,SqStack *q2,ElemType x)
 //使用两个栈来模拟出队操作
 bool DeQueue_2S(SqStack* q1, SqStack* q2, ElemType &x)
 {
-	if (isEmpty(*q1))
+
+	if (isEmpty(*q1) && isEmpty(*q2))
 		return false;
+	//else
+
 
 	ElemType t;
 	while (pop(*q1, t))
 	{
 		push(*q2, t);
 		if (isFull(*q2))
-			return false;
+			break;
 	}
 
 	pop(*q2, x);
 	return true;
 }
 
-//使用两个栈来模拟清空队列操作
-bool ClearQueue_2S(SqStack *q1,SqStack *q2)
+//使用两个栈来模拟队列，判空操作
+bool IsEmpty_2S(SqStack *q1,SqStack *q2)
 {
-	if (q1->top == 0)
+	if (isEmpty(*q1) && isEmpty(*q2))
 	{
-		return false;
+		return true;
 	}
 	else
+		return false;
+}
+
+//使用两个栈来模拟队列，清空队列操作
+bool ClearQueue_2S(SqStack* q1, SqStack* q2)
+{
+	if (!isEmpty(*q1) && !isEmpty(*q2))
+	{
 		q1->top = 0;
-	if (q2->top == 0)
+		q2->top = 0;
+		return true;
+	}
+	else
+		return false;
+}
+
+//使用两个栈来模拟队列，输出两个栈的操作
+bool QueueOutStack_2S(SqStack* q1, SqStack* q2)
+{
+	if (!isEmpty(*q1) && !isEmpty(*q2))
 	{
 		return false;
 	}
 	else
-		q2->top = 0;
-	return true;
+	{
+		cout << "栈1：	";
+		OutStack(*q1);
+		cout << "栈2：	";
+		OutStack(*q2);
+		return false;
+	}
+		
 }
