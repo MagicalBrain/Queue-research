@@ -154,6 +154,7 @@
     <ClInclude Include="LinkList.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="StrError.h" />
     <ClInclude Include="TagSequeue.h" />
     <ClInclude Include="TestFunction.h" />
   </ItemGroup>

@@ -8,7 +8,8 @@ int main()
 	//TestQueue_T();
 
 	//Testfunc02();
-	Testfunc03();
+	//Testfunc03();
+	Testfunc04();
 
 	return 0;
 }

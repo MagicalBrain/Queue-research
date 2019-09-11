@@ -100,3 +100,73 @@ bool QueueOutStack_2S(SqStack* q1, SqStack* q2)
 	}
 		
 }
+
+bool func04(char *in)
+//《王道》 T3.3 T4
+{
+	if (NULL == in)
+		return false;
+	int size = 10;
+	struct BoradQueue
+	{
+		char* queue;
+		int front, rear;
+		int num;		//Knum:客车数量，Hnum:货车数量
+	};
+
+	int num = 0;
+	char c,t;
+	char s1[100],s2[100];
+	c = in[num];
+	
+	BoradQueue* sK, * sH;
+	sK = (BoradQueue*)malloc(sizeof(BoradQueue));
+	sH = (BoradQueue*)malloc(sizeof(BoradQueue));
+	
+	sK->queue = s1;
+	sK->front = -1, sK->rear = 0;
+
+	sH->queue = s2;
+	sH->front = -1, sH->rear = 0;
+
+	while (in[num]!='\0')
+	{
+		c = in[num];
+		if (c == 'K')
+		{
+			sK->queue[sK->rear++] = c;
+			sK->num++;
+		}
+		else
+		{
+			sH->queue[sH->rear++] = c;
+			sH->num++;
+		}
+		num++;
+	}
+
+	c = sK->queue[++sK->front];
+	num = 0;
+	while (sK->front < sK->rear)
+	{
+		cout << c << ", ";
+		num++;
+		if (num == 4 && sH->rear > 0)
+		{
+			cout << sH->queue[++sH->front] << " ,";
+			num = 0;
+		}
+		c = sK->queue[++sK->front];
+	}
+
+	if (sH->front <sH->rear-1)
+	{
+		while (sH->front <sH->rear-1)
+		{
+			cout << sH->queue[++sH->front] << " ,";
+		}
+	}
+	cout << endl;
+
+	return true;
+}

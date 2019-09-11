@@ -4,6 +4,7 @@
 #include "Function.h"
 #include "TagSequeue.h"
 #include "stack.h"
+#include "StrError.h"
 
 using namespace std;
 
@@ -122,4 +123,61 @@ void Testfunc03()
 		cout << "清除成功！" << endl;
 	else
 		cout << "清除失败！" << endl;
+}
+
+void Testfunc04()
+{
+	char str[100]="";
+	cin >> str;
+	str[10] = '\0';
+	try
+	{
+		char c;
+		int num = 0;
+		//c = str[0];
+		while (str[num]!= '\0')
+		{
+			c = str[num];
+			if (c != 'K' && c != 'H')
+			{
+				Error err1(-1, "输入了非法字符！");
+				throw(err1);
+			}
+			num++;
+		}
+		
+		if (num < 10)
+		{
+			Error err2(-2, "输入长度过短！");
+			throw(err2);
+		}
+		else if (num > 10)
+		{
+			Error err3(-3, "输入长度过长！");
+			throw(err3);
+		}
+
+		cout << "输入s：" << endl;
+		for (int i = 0; i < 10; i++)
+		{
+			cout << str[i] << ", ";
+		}
+		cout << endl;
+		
+		//输入调用被测试函数：
+		if (func04(str))
+		{
+			cout << "处理成功！" << endl;
+		}
+		else
+		{
+			cout << "处理失败！" << endl;
+		}
+	}
+	catch (Error err1)
+	{
+		err1.showerror();
+		exit(0);
+	}
+	
 }
